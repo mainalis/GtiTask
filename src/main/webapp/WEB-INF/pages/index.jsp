@@ -29,6 +29,12 @@
 <h1>Insert Animal Data</h1>
 
 
+<form method="POST" action="/guest">
+    Name: <input type="text" name="name" />
+    <input type="submit" value="Add" />
+</form>
+
+
 <div > Insert Animal
 
 </div>

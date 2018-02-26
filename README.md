@@ -1,4 +1,6 @@
 # GtiTask
 
 This is a maven project (devloped in intellij) tested in Tomacat 9 .
-[https://github.com/mainalis/GtiTask/screen.png]
+
+
+![Alt text](screen.png?raw=true "Optional Title")

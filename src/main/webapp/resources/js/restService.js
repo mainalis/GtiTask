@@ -8,25 +8,37 @@
 app.factory('ProductService', ['$http', '$q', function($http, $q){
 
     var REST_SERVICE_URI = 'http://localhost:8080/SkyProductCatlouge/getCatalogue';
+    var Insert_URI = 'http://localhost:8080/insertAnimal';
     var property = 'First';
 
     var factory = {
-
-        fetchAllProduct: fetchAllProduct,
-        fetchAllUser: fetchAllUser,
-        fetchProductByUserId: fetchProductByUserId,
-        fetchDefaultProduct: fetchDefaultProduct,
-        displayBasket: displayBasket,
-        deleteUser:deleteUser,
-        getBasket: getBasket,
-        setBasket: setBasket
+        insertAnimal : insertAnimal,
+        insertPost: insertPost,
+        getAllAnimals: getAllAnimals
     };
 
     return factory;
 
-    function fetchAllProduct() {
+    function insertAnimal(animal)
+    {
         var deferred = $q.defer();
-        $http.get(REST_SERVICE_URI + "/allProduct")
+        $http.post('insertAnimal', animal)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while creating User');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise
+    }
+
+    function getAllAnimals()
+    {
+        var deferred = $q.defer();
+        $http.get('getAllAnimal')
             .then(
             function (response) {
                 deferred.resolve(response.data);
@@ -37,41 +49,21 @@ app.factory('ProductService', ['$http', '$q', function($http, $q){
             }
         );
         return deferred.promise;
+
     }
 
-    function fetchAllUser() {
-        var deferred = $q.defer();
-        $http.get(REST_SERVICE_URI + "/allUser")
-            .then(
-            function (response) {
-                deferred.resolve(response.data);
-            },
-            function(errResponse){
-                console.error('Error while fetching Users');
-                deferred.reject(errResponse);
-            }
-        );
-        return deferred.promise;
-    }
+    function insertPost()
+    {
 
-    function fetchProductByUserId(userId) {
         var deferred = $q.defer();
-        $http.get(REST_SERVICE_URI + "/productByUserId/"+userId)
-            .then(
-            function (response) {
-                deferred.resolve(response.data);
-            },
-            function(errResponse){
-                console.error('Error while creating User');
-                deferred.reject(errResponse);
-            }
-        );
-        return deferred.promise;
-    }
+        var formData = {
+            "FullName" : 'sushil',
+            "City" : 'Reading',
+            "Zip" : 'RG14QN'
+        };
 
-    function displayBasket(basket) {
-        var deferred = $q.defer();
-        $http.post(REST_SERVICE_URI + "/basketEntry", basket)
+
+        $http.post('PostFormDataByMap', formData)
             .then(
             function (response) {
                 deferred.resolve(response.data);
@@ -81,42 +73,9 @@ app.factory('ProductService', ['$http', '$q', function($http, $q){
                 deferred.reject(errResponse);
             }
         );
-        return deferred.promise;
-    }
-
-    function fetchDefaultProduct() {
-        var deferred = $q.defer();
-        $http.get(REST_SERVICE_URI + "/productDefault")
-            .then(
-            function (response) {
-                deferred.resolve(response.data);
-            },
-            function(errResponse){
-                console.error('Error while creating User');
-                deferred.reject(errResponse);
-            }
-        );
-        return deferred.promise;
+        return deferred.promise
     }
 
 
-
-    function updateUser(user, id) {
-
-    }
-
-    function deleteUser(id) {
-
-    }
-
-
-    function getBasket( ) {
-        return property;
-    }
-
-
-    function setBasket(item) {
-        property = item;
-    }
 
 }]);

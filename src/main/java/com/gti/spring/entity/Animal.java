@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 @Table(name = "animal")
 @Inheritance (strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name ="ANIMAL_TYPE")
+@DiscriminatorColumn(name ="ANIMAL_TYPE", discriminatorType = DiscriminatorType.STRING)
 public abstract class Animal  {
 
     @Id @GeneratedValue
@@ -44,6 +44,8 @@ public abstract class Animal  {
     @Column
     boolean hasHorns;
 
+    @Column(name = "ANIMAL_TYPE", insertable = false, updatable = false)
+    String animalType;
 
     public long getId() {
         return id;
@@ -124,6 +126,17 @@ public abstract class Animal  {
 
     public void setHasHorns(boolean hasHorns) {
         this.hasHorns = hasHorns;
+    }
+
+    
+    public String getAnimalType()
+    {
+        return animalType;
+    }
+
+    public void setAnimalType(String animalType)
+    {
+        this.animalType = animalType;
     }
 
     @Override

@@ -63,11 +63,20 @@ public class IndexController {
 
     }
 
-    @RequestMapping(value = "/insertAnimal", method = RequestMethod.POST)
-    public ResponseEntity<Animal> enterAnimal(@RequestBody MountainGoat animal) {
+    @RequestMapping(value = "/insertGoat", method = RequestMethod.POST)
+    public ResponseEntity<Animal> insertCow(@RequestBody MountainGoat animal) {
 
         Animal tt = animal;
-        animalDao.persistGMountainGoat(animal);
+        animalDao.persistAnimal(animal);
+        return new ResponseEntity<>(animal, HttpStatus.OK);
+
+    }
+    
+    @RequestMapping(value = "/insertCow", method = RequestMethod.POST)
+    public ResponseEntity<Animal> insertCow(@RequestBody Cow animal) {
+
+        Animal tt = animal;
+        animalDao.persistAnimal(animal);
         return new ResponseEntity<>(animal, HttpStatus.OK);
 
     }

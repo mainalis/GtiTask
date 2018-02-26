@@ -38,24 +38,12 @@ public class AnimalDao {
 
 
     @Transactional
-    public void persistGMountainGoat(Animal animal) {
-
-//
-//        MountainGoat tempMountanGoat = (MountainGoat)animal;
-//        tempMountanGoat.birthDate = new Date();
-//        tempMountanGoat.breed = "dddds";
-//        tempMountanGoat.color = "white";
-//        tempMountanGoat.hasHorns = true;
-//        tempMountanGoat.givenName = "mad goat";
-//        tempMountanGoat.height = 10.12;
-//        tempMountanGoat.weight = 150;
-//        tempMountanGoat.scientificName ="ddfddd";
-//        tempMountanGoat.sex= "Male";
-//        tempMountanGoat.setCanClimbSteepSlopes(true);
-//        tempMountanGoat.setGazedOnMountainSlope(true);
+    public void persistAnimal(Animal animal) {
 
         em.persist(animal);
     }
+    
+
 
     // Retrieves all the guests:
     public List<Animal> getAllAnimals() {

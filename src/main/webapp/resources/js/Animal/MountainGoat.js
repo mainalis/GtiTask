@@ -1,17 +1,19 @@
-/**
- * Created by sushilmainali on 25/02/2018.
- */
 
 
 'use strict';
 
 class MountainGoat extends Animal {
 
-    constructor() {
+    constructor(animalObj) {
 
-        super("aa", "red", Date.now(), 24, "erere", "kkkkk","Male", 12, true);
+        super(animalObj.scientificName, animalObj.color, animalObj.birthDate, 
+        		animalObj.weight, animalObj.givenName, animalObj.breed,animalObj.sex, animalObj.height, animalObj.hasHorns);
 
+        this.gazedOnMountainSlope = true;
+        this.hasBeards = true;
+        this.canClimbSteepSlopes = true;
     }
+    
 
 
 

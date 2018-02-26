@@ -7,28 +7,41 @@
 
 app.factory('ProductService', ['$http', '$q', function($http, $q){
 
-    var REST_SERVICE_URI = 'http://localhost:8080/SkyProductCatlouge/getCatalogue';
-    var Insert_URI = 'http://localhost:8080/insertAnimal';
-    var property = 'First';
-
     var factory = {
-        insertAnimal : insertAnimal,
+    	insertGoat : insertGoat,
         insertPost: insertPost,
-        getAllAnimals: getAllAnimals
+        getAllAnimals: getAllAnimals,
+        insertCow : insertCow
     };
 
     return factory;
 
-    function insertAnimal(animal)
+    function insertGoat(animal)
     {
         var deferred = $q.defer();
-        $http.post('insertAnimal', animal)
+        $http.post('insertGoat', animal)
             .then(
             function (response) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while creating User');
+                console.error('Error while inserting mountainGoat');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise
+    }
+    
+    function insertCow(animal)
+    {
+        var deferred = $q.defer();
+        $http.post('insertCow', animal)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while inserting cow');
                 deferred.reject(errResponse);
             }
         );
@@ -59,7 +72,7 @@ app.factory('ProductService', ['$http', '$q', function($http, $q){
         var formData = {
             "FullName" : 'sushil',
             "City" : 'Reading',
-            "Zip" : 'RG14QN'
+            "Zip" : 'RG14XX'
         };
 
 
